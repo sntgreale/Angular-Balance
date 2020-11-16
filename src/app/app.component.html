@@ -1,0 +1,147 @@
+<div class="container-fluid">
+    <br>
+    <div class="box-forms">
+        <div class="box-form-transaction">
+            <h4>Nuevo Ingreso / Egreso</h4>
+            <form
+                (submit)="addTransaction(name, description, price, category, date, transaction, dateFilter, categoryFilter, transactionFilter )">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" placeholder="Nombre" #name>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input class="form-control" placeholder="Descripción" #description>
+                </div>
+                <div class="form-group">
+                    <label>Precio</label>
+                    <input type="number" min="1" placeholder="$$$" class="form-control" #price>
+                </div>
+                <div class="form-group">
+                    <label>Categoría</label>
+                    <select class="form-control" #category>
+                        <option *ngFor="let category of categories">{{ category.name }} - {{ category.description }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Fecha</label>
+                    <select class="form-control" #date>
+                        <option *ngFor="let date of dates">{{ date }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Transacción</label>
+                    <select class="form-control" #transaction>
+                        <option>Ingreso</option>
+                        <option>Egreso</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary">Cargar</button>
+            </form>
+        </div>
+        <hr>
+        <div class="box-form-category">
+            <h4>Nueva Categoría</h4>
+            <form (submit)="addCategory(newCategory, newDesCategory)">
+                <div class="form-group">
+                    <label>Categoría:</label>
+                    <input type="text" class="form-control" #newCategory>
+                </div>
+                <div>
+                    <label>Descripción:</label>
+                    <input type="text" class="form-control" #newDesCategory>
+                </div>
+                <br>
+                <button class="btn btn-primary">Crear</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <table class="table table-hover box-list">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Transacción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transaction of transactionsDisplayed">
+                    <td>{{ transaction.name }}</td>
+                    <td>{{ transaction.description }}</td>
+                    <td>{{ transaction.date }}</td>
+                    <td>{{ transaction.category }}</td>
+                    <td>{{ transaction.price | currency }}</td>
+                    <td>{{ transaction.transaction }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-balance">
+        <h4>Balance</h4>
+        <hr>
+        <div class="alert alert-primary" role="alert">
+            Ingresos: {{ entry | currency }}
+        </div>
+        <div class="alert alert-warning" role="alert">
+            Egresos: {{ egress | currency }}
+        </div>
+        <hr>
+        <div class="alert alert-danger" role="alert" *ngIf="total < 0">
+            Balance Total: {{ total | currency }}
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="total > 0">
+            Balance Total: {{ total | currency }}
+        </div>
+        <div class="alert alert-secondary" role="alert" *ngIf="total == 0">
+            Balance Total: {{ total | currency }}
+        </div>
+        <hr>
+        <hr>
+        <div class="box-filters">
+            <h4> Filtros </h4>
+            <hr>
+            <div class="form-group">
+                <form (submit)="filterByCategory(dateFilter, categoryFilter, transactionFilter)">
+
+                    <label>Fecha</label>
+                    <select class="form-control" #dateFilter>
+                        <option>CUALQUIERA</option>
+                        <option *ngFor="let date of dates">{{ date }}</option>
+                    </select>
+                    <br>
+
+                    <label>Categoría</label>
+                    <select class="form-control" #categoryFilter>
+                        <option>CUALQUIERA</option>
+                        <option *ngFor="let category of categories">{{ category.name }} - {{ category.description }}
+                        </option>
+                    </select>
+                    <br>
+
+                    <label>Transacción</label>
+                    <select class="form-control" #transactionFilter>
+                        <option>CUALQUIERA</option>
+                        <option>Ingreso</option>
+                        <option>Egreso</option>
+                    </select>
+                    <br>
+
+                    <button class="btn btn-primary">Filtrar</button>
+                </form>
+            </div>
+            <hr>
+            <hr>
+            <div class="form-group">
+                <form (submit)="historicalRecord(dateFilter, categoryFilter, transactionFilter)">
+                    <label>Cargar historico de transacciones</label>
+                    <button class="btn btn-primary">Cargar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

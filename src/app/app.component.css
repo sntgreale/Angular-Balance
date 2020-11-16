@@ -1,0 +1,40 @@
+/* SECCIÓN FORMULARIOS */
+/* Nueva transacción*/
+.box-forms {
+    width: 15%;
+    float: left;
+    border-right: 1px solid #c4c4c4;
+}
+
+.box-form-transaction {
+    padding: 5px;
+}
+
+/* Nueva categoría*/
+.box-form-category {
+    padding: 5px;
+}
+/* FIN SECCIÓN FORMULARIOS */
+
+/* SECCIÓN LISTAS*/
+.box-list {
+    width: 68%;
+    float: left;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+/* FIN SECCIÓN LISTAS */
+
+/* SECCIÓN BALANCE */
+.box-balance {
+    width: 15%;
+    float: left;
+    padding: 5px;
+    border-left: 1px solid #c4c4c4;
+}
+/* FIN SECCIÓN BALANCE */
+
+/* SECCIÓN BALANCE MENSUAL (localstorage) */
+
+/* FIN SECCIÓN BALANCE MENSUAL (localstorage) */
